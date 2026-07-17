@@ -1,32 +1,23 @@
-/* Paleta de Cores de Alta Fidelidade (Cinza, Laranja e Azul Caixa) */
+/* Paleta de Cores de Alta Fidelidade */
 :root {
-    /* Identidade Visual - Cores Oficiais Caixa Econômica + Paleta Cinza */
     --azul-caixa: #005CA9;
     --azul-profundo: #003058;
     --laranja-caixa: #F37021;
     --laranja-brilhante: #FF853D;
     --cinza-marca: #2A2C2E;
-    /* Cinza escuro premium (vinda do LogoSemMouse) */
     --cinza-medio: #64748B;
-    /* Cinza para subtítulos e elementos secundários */
     --cinza-claro: #F1F5F9;
-    /* Cinza muito suave para fundos de seções */
 
-    /* Textos e Neutros */
     --texto-principal: #1E293B;
-    /* Grafite Escuro */
     --texto-suave: #475569;
-    /* Grafite Médio */
     --branco-puro: #FFFFFF;
     --linha-divisoria: #E2E8F0;
 
-    /* Gradientes Corporativos */
     --gradiente-fundo: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%);
     --gradiente-jornada: linear-gradient(145deg, var(--azul-profundo) 0%, var(--azul-caixa) 100%);
     --gradiente-laranja: linear-gradient(90deg, var(--laranja-caixa) 0%, var(--laranja-brilhante) 100%);
     --gradiente-laranja-hover: linear-gradient(90deg, #D8560F 0%, var(--laranja-caixa) 100%);
 
-    /* Estrutura */
     --borda-raio: 16px;
     --sombra-cartao: 0 10px 30px rgba(15, 23, 42, 0.04);
     --sombra-cartao-hover: 0 20px 40px rgba(15, 23, 42, 0.08);
@@ -60,8 +51,10 @@ button {
 }
 
 .conteiner {
-    width: min(1160px, calc(100% - 48px));
+    width: 100%;
+    max-width: 1160px;
     margin: 0 auto;
+    padding: 0 24px;
 }
 
 h1,
@@ -78,7 +71,7 @@ h3 {
     line-height: 1.2;
 }
 
-/* Barra de Progresso de Leitura Corrigida */
+/* Barra de Progresso de Leitura */
 .progresso-rolagem {
     position: fixed;
     top: 0;
@@ -88,8 +81,8 @@ h3 {
     height: 4px;
     background: var(--gradiente-laranja);
     box-shadow: 0 0 10px rgba(243, 112, 33, 0.5);
-    opacity: 0; /* Começa invisível para esconder a sombra/fiapo laranja no topo */
-    transition: opacity 0.2s ease; /* Transiciona suavemente quando começa a rolar */
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 /* --- Cabeçalho --- */
@@ -109,20 +102,19 @@ h3 {
 }
 
 .navegacao {
-    min-height: 110px; /* Aumentado de 85px para 110px para iniciar maior */
+    min-height: 110px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    transition: var(--transicao-suave); /* Suaviza a transição de encolhimento */
+    transition: var(--transicao-suave);
 }
 
-/* Encolhe o tamanho do container ao scrollar */
 .cabecalho-site.rolado .navegacao {
-    min-height: 70px; /* Reduz para 70px de altura */
+    min-height: 70px;
 }
 
-/* Estrutura de Efeito Hover Dinâmico da Logo (Cinza para Laranja) */
+/* Logo Dinâmica */
 .area-logo {
     display: flex;
     align-items: center;
@@ -138,7 +130,6 @@ h3 {
     transition: var(--transicao-suave);
 }
 
-/* Encolhe sutilmente o ícone da logo ao scrollar */
 .cabecalho-site.rolado .logo-wrapper {
     width: 30px;
     height: 30px;
@@ -159,7 +150,6 @@ h3 {
     transform: scale(0.9) rotate(-5deg);
 }
 
-/* Gatilho de Hover na Logo */
 .marca:hover .logo-sem-mouse {
     opacity: 0;
     transform: scale(0.9) rotate(5deg);
@@ -178,22 +168,21 @@ h3 {
     transition: var(--transicao-suave);
 }
 
-/* Reduz ligeiramente o texto do logo ao scrollar */
 .cabecalho-site.rolado .texto-logo {
     font-size: 1.3rem;
 }
 
 .texto-logo small {
     display: block;
-    font-size: 0.58rem; /* Reduzido de 0.7rem para acomodar "Soluções Imobiliárias" */
+    font-size: 0.58rem;
     color: var(--cinza-medio);
-    letter-spacing: 0.08em; /* Ajustado para melhor leitura horizontal */
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-top: -3px;
-    white-space: nowrap; /* Evita que o texto quebre linha */
+    white-space: nowrap;
 }
 
-/* Links */
+/* Links Navegação */
 .links-navegacao {
     display: flex;
     align-items: center;
@@ -209,17 +198,51 @@ h3 {
     transition: var(--transicao-suave);
 }
 
-.links-navegacao a:hover {
+.links-navegacao a:not(.botao-destaque-nav):hover {
     color: var(--azul-caixa);
     background: rgba(0, 92, 169, 0.05);
 }
 
-/* CTA Nav */
+/* Redes Sociais no Cabeçalho */
+.redes-sociais-topo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.redes-sociais-topo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(0, 92, 169, 0.06);
+    color: var(--azul-caixa);
+}
+
+.redes-sociais-topo a:hover {
+    background: var(--azul-caixa);
+    color: var(--branco-puro);
+    transform: translateY(-2px);
+}
+
+.divisor-mobile {
+    display: none !important;
+}
+
+.CTA-mobile {
+    display: none !important;
+}
+
 .botao-destaque-nav {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 12px 22px;
+    padding: 12px 22px !important;
     color: var(--azul-caixa);
     border: 2px solid var(--azul-caixa);
     border-radius: 10px;
@@ -229,8 +252,8 @@ h3 {
 }
 
 .botao-destaque-nav:hover {
-    background: var(--azul-caixa);
-    color: var(--branco-puro);
+    background: var(--azul-caixa) !important;
+    color: var(--branco-puro) !important;
     box-shadow: 0 8px 20px rgba(0, 92, 169, 0.2);
     transform: translateY(-2px);
 }
@@ -338,7 +361,7 @@ h1 span {
     margin-bottom: 40px;
 }
 
-/* Botões */
+/* Botões Globais */
 .acoes-destaque {
     display: flex;
     flex-wrap: wrap;
@@ -398,9 +421,10 @@ h1 span {
     color: var(--laranja-caixa);
 }
 
-/* Imagem com Movimento */
+/* Imagens e Flutuantes */
 .englobador-imagem-destaque {
     position: relative;
+    width: 100%;
 }
 
 .imagem-destaque {
@@ -472,17 +496,24 @@ h1 span {
     background: var(--azul-caixa);
     color: var(--branco-puro);
     border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.textos-nota {
+    display: flex;
+    flex-direction: column;
 }
 
 .nota-destaque strong {
-    display: block;
     color: var(--azul-profundo);
     font-size: 1rem;
+    line-height: 1.3;
 }
 
 .nota-destaque span {
     color: var(--texto-suave);
     font-size: 0.85rem;
+    line-height: 1.3;
 }
 
 /* --- Soluções --- */
@@ -512,16 +543,15 @@ h2 {
     font-size: 1.1rem;
 }
 
-/* Efeito 3D nos Cartões */
 .grade-solucoes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
 }
 
 .cartao-solucao {
     background: var(--branco-puro);
-    padding: 40px 30px;
+    padding: 40px 24px;
     border-radius: var(--borda-raio);
     border: 1px solid rgba(0, 92, 169, 0.08);
     box-shadow: var(--sombra-cartao);
@@ -825,12 +855,6 @@ h2 {
     display: block;
 }
 
-.espaco-mapa b {
-    display: block;
-    color: var(--branco-puro);
-    margin-bottom: 5px;
-}
-
 .rodape-inferior {
     display: flex;
     justify-content: space-between;
@@ -838,11 +862,7 @@ h2 {
     font-size: 0.85rem;
 }
 
-.rodape-inferior a {
-    color: var(--branco-puro);
-}
-
-/* --- Revelação CSS --- */
+/* --- Animação de Revelação --- */
 .revelar {
     opacity: 0;
     transform: translateY(30px);
@@ -858,23 +878,36 @@ h2 {
     transform: translate3d(0, var(--paralaxe-y, 0px), 0) rotate(var(--paralaxe-rotacao, 0deg));
 }
 
-/* --- Responsividade --- */
+
+/* =========================================================================
+   SISTEMA ANTIESMAGAMENTO E RECONSTRUÇÃO MOBILE (CELULARES)
+   ========================================================================= */
+
 @media (max-width: 992px) {
+    .foto-jornada {
+        inset: 0;
+    }
 
     .grade-destaque,
     .grade-jornada {
-        grid-template-columns: 1fr;
-        gap: 60px;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100%;
+        gap: 50px !important;
     }
 
-    .englobador-imagem-destaque {
-        max-width: 600px;
+    .grade-solucoes {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .englobador-imagem-destaque,
+    .englobador-foto-jornada {
+        width: 100% !important;
+        max-width: 480px;
         margin: 0 auto;
     }
 
     .englobador-foto-jornada {
-        max-width: 500px;
-        margin: 0 auto;
         order: -1;
     }
 
@@ -884,6 +917,17 @@ h2 {
 }
 
 @media (max-width: 768px) {
+    .CTA-desktop {
+        display: none !important;
+    }
+
+    .CTA-mobile {
+        display: inline-flex !important;
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
     .alternar-menu {
         display: flex;
         align-items: center;
@@ -895,20 +939,148 @@ h2 {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--branco-puro);
+        background: rgba(255, 255, 255, 0.96) !important;
+        backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px 25px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         transition: clip-path 0.4s ease;
+        border-bottom: 3px solid var(--azul-caixa);
     }
 
     .links-navegacao.aberto {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 
-    .botao-destaque-nav {
-        display: none;
+    .links-navegacao a:not(.CTA-mobile, .redes-sociais-topo a) {
+        width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+
+    .divisor-mobile {
+        display: block !important;
+        height: 1px;
+        background: var(--linha-divisoria);
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .redes-sociais-topo {
+        margin: 0;
+        justify-content: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .redes-sociais-topo a {
+        width: 45px;
+        height: 45px;
+        background: rgba(0, 92, 169, 0.08);
+    }
+
+    /* Ajuste fino de calibração do fundo (60% de opacidade azul-escuro) */
+    .destaque-principal {
+        padding: 40px 0 70px;
+        background: linear-gradient(180deg, rgba(0, 32, 64, 0.6) 0%, rgba(0, 20, 40, 0.75) 100%),
+            url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80") center/cover no-repeat !important;
+    }
+
+    /* Letras brancas com sombra de leitura */
+    .texto-destaque h1 {
+        color: var(--branco-puro) !important;
+        font-size: 2.2rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Termo 'boa decisão' com degradê brilhante isolado e limpo */
+    .texto-destaque h1 span {
+        background: linear-gradient(90deg, #FFA366 0%, #FF7A29 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-shadow: none !important;
+        display: inline-block;
+    }
+
+    .texto-destaque p {
+        color: rgba(241, 245, 249, 0.95) !important;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        font-weight: 500;
+    }
+
+    .texto-destaque .etiqueta-topo {
+        color: var(--laranja-brilhante) !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* CORREÇÃO DO TEXTO DA CAIXA: Clareado e com sombra projetada */
+    .texto-destaque .linha-confianca {
+        color: rgba(241, 245, 249, 0.9) !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        font-weight: 600;
+    }
+
+    .acoes-destaque {
+        flex-direction: column;
+    }
+
+    .botao {
+        width: 100%;
+    }
+
+    .englobador-imagem-destaque {
+        margin-bottom: 40px;
+        margin-top: 10px;
+    }
+
+    /* Centralização Flutuante Segura */
+    .nota-destaque,
+    .selo-jornada {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 88%;
+        max-width: 320px;
+        padding: 16px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nota-destaque {
+        bottom: -35px;
+        flex-direction: row;
+        text-align: left;
+        gap: 12px;
+        border-radius: 12px;
+    }
+
+    .selo-jornada {
+        bottom: -40px;
+        flex-direction: column;
+        border-radius: 14px;
+    }
+
+    .icone-nota {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nota-destaque strong {
+        font-size: 0.95rem;
+    }
+
+    .nota-destaque span {
+        font-size: 0.8rem;
+    }
+
+    .englobador-foto-jornada {
+        margin-bottom: 40px;
     }
 
     .topo-secao {
@@ -930,5 +1102,11 @@ h2 {
         flex-direction: column;
         gap: 20px;
         text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .grade-solucoes {
+        grid-template-columns: 1fr !important;
     }
 }
