@@ -1105,7 +1105,7 @@ a.cartao-solucao h3 {
     .destaque-principal {
         padding: 40px 0 70px;
         background: linear-gradient(180deg, rgba(0, 32, 64, 0.6) 0%, rgba(0, 20, 40, 0.75) 100%),
-            url("../imagens/BannerFundoCelular.jpeg") center/cover no-repeat !important;
+            url("imagens/BannerFundoCelular.jpeg") center/cover no-repeat !important;
     }
 
     .texto-destaque h1 {
