@@ -28,22 +28,18 @@ window.addEventListener('scroll', function () {
 }, { passive: true });
 
 // --- 2. CRIAÇÃO DO MENU DE OPÇÕES (SELECT) CUSTOMIZADO ---
-// Esse código transforma as opções feias do navegador num menu moderno!
 document.addEventListener('DOMContentLoaded', function () {
     const selects = document.querySelectorAll('.campo-form select');
 
     selects.forEach(select => {
-        // Esconde o select chato do HTML original
         select.classList.add('select-escondido');
 
-        // Cria a nova estrutura visual
         const wrapper = document.createElement('div');
         wrapper.classList.add('custom-select-wrapper');
 
         const trigger = document.createElement('div');
         trigger.classList.add('custom-select-trigger');
 
-        // Pega o texto inicial
         const initialText = select.options[select.selectedIndex].text;
         const isPlaceholder = select.options[select.selectedIndex].disabled;
 
@@ -53,55 +49,45 @@ document.addEventListener('DOMContentLoaded', function () {
         const optionsList = document.createElement('div');
         optionsList.classList.add('custom-select-options');
 
-        // Cria a lista bonitinha
         Array.from(select.options).forEach((option, index) => {
-            if (option.disabled) return; // Não coloca o "Selecione..." na lista que desce
+            if (option.disabled) return;
 
             const customOption = document.createElement('div');
             customOption.classList.add('custom-option');
             customOption.textContent = option.text;
 
-            // O que acontece quando o cliente clica numa opção
             customOption.addEventListener('click', function (e) {
-                e.stopPropagation(); // Evita bugar outros cliques
+                e.stopPropagation();
 
-                // Atualiza o select escondido (para o envio do whatsapp funcionar)
                 select.selectedIndex = index;
                 select.dispatchEvent(new Event('change'));
 
-                // Atualiza o texto do botão
                 const triggerSpan = trigger.querySelector('span');
                 triggerSpan.textContent = option.text;
                 triggerSpan.classList.remove('placeholder');
 
-                // Atualiza a cor de selecionado
                 optionsList.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
                 customOption.classList.add('selected');
 
-                // Fecha o menu
                 wrapper.classList.remove('open');
             });
 
             optionsList.appendChild(customOption);
         });
 
-        // Abre e fecha o menu ao clicar no botão
         trigger.addEventListener('click', function (e) {
             e.stopPropagation();
-            // Fecha qualquer outro menu aberto
             document.querySelectorAll('.custom-select-wrapper').forEach(w => {
                 if (w !== wrapper) w.classList.remove('open');
             });
             wrapper.classList.toggle('open');
         });
 
-        // Monta o quebra-cabeça na tela
         wrapper.appendChild(trigger);
         wrapper.appendChild(optionsList);
         select.parentNode.insertBefore(wrapper, select.nextSibling);
     });
 
-    // Fecha os menus se o cliente clicar em qualquer outro lugar da tela
     document.addEventListener('click', function () {
         document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
     });
@@ -121,7 +107,14 @@ function verificarCompanheiro() {
 }
 
 
-// --- 4. MONTAGEM E ENVIO DA MENSAGEM DO WHATSAPP ---
+// --- 4. MONTAGEM E ENVIO DA MENSAGEM DO WHATSAPP (COM AJUSTES DE DATA E TEXTO) ---
+function formatarDataBrasileira(dataISO) {
+    if (!dataISO) return 'Não preenchido';
+    const partes = dataISO.split('-');
+    if (partes.length !== 3) return dataISO;
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
 document.getElementById('form-simulacao').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -135,7 +128,7 @@ document.getElementById('form-simulacao').addEventListener('submit', function (e
     // Coleta dos dados do formulário
     const nome = document.getElementById('nome').value;
     const cpf = document.getElementById('cpf').value;
-    const nascimento = document.getElementById('nascimento').value;
+    const nascimento = formatarDataBrasileira(document.getElementById('nascimento').value);
     const escolaridade = document.getElementById('escolaridade').value;
     const pis = document.getElementById('pis').value;
     const email = document.getElementById('email').value;
@@ -147,45 +140,51 @@ document.getElementById('form-simulacao').addEventListener('submit', function (e
     const outroImovel = document.getElementById('outro_imovel').value;
     const entrada = document.getElementById('entrada').value;
     const fgts = document.getElementById('fgts').value;
-    const encaminhou = document.getElementById('encaminhou').value || 'Ninguém / Não preenchido';
+    const encaminhou = document.getElementById('encaminhou').value || 'Não preenchido';
     const comoConheceu = document.getElementById('como_conheceu').value;
 
-    // Estrutura organizada da mensagem
-    let mensagem = `*NOVA SOLICITAÇÃO DE SIMULAÇÃO - DOMOB* 🏠\n`;
-    mensagem += `_(Formulário preenchido pelo site)_\n\n`;
+    // Estrutura organizada e limpa da mensagem
+    let mensagem = `*NOVA SOLICITAÇÃO DE SIMULAÇÃO - DOMOB*\n`;
+    mensagem += `(Formulário preenchido pelo site)\n\n`;
 
-    mensagem += `*1. DADOS PESSOAIS*\n`;
-    mensagem += `- Nome: ${nome}\n`;
-    mensagem += `- CPF: ${cpf}\n`;
-    mensagem += `- Nascimento: ${nascimento}\n`;
-    mensagem += `- Escolaridade: ${escolaridade}\n`;
-    mensagem += `- PIS: ${pis}\n`;
-    mensagem += `- E-mail: ${email}\n`;
-    mensagem += `- Estado Civil: ${estadoCivil}\n\n`;
+    mensagem += `*DADOS PESSOAIS*\n`;
+    mensagem += `Nome: ${nome}\n`;
+    mensagem += `CPF: ${cpf}\n`;
+    mensagem += `Nascimento: ${nascimento}\n`;
+    mensagem += `Escolaridade: ${escolaridade}\n`;
+    mensagem += `PIS: ${pis}\n`;
+    mensagem += `E-mail: ${email}\n`;
+    mensagem += `Estado Civil: ${estadoCivil}\n\n`;
 
     if (estadoCivil === 'casado(a)' || estadoCivil === 'união estável') {
-        mensagem += `*2. DADOS DO COMPANHEIRO(A)*\n`;
-        mensagem += `- CPF: ${document.getElementById('cpf_comp').value || 'Não preenchido'}\n`;
-        mensagem += `- Nascimento: ${document.getElementById('nascimento_comp').value || 'Não preenchido'}\n`;
-        mensagem += `- E-mail: ${document.getElementById('email_comp').value || 'Não preenchido'}\n`;
-        mensagem += `- Escolaridade: ${document.getElementById('escolaridade_comp').value || 'Não preenchido'}\n`;
-        mensagem += `- PIS: ${document.getElementById('pis_comp').value || 'Não preenchido'}\n\n`;
+        const cpfComp = document.getElementById('cpf_comp').value || 'Não preenchido';
+        const nascComp = formatarDataBrasileira(document.getElementById('nascimento_comp').value);
+        const emailComp = document.getElementById('email_comp').value || 'Não preenchido';
+        const escComp = document.getElementById('escolaridade_comp').value || 'Não preenchido';
+        const pisComp = document.getElementById('pis_comp').value || 'Não preenchido';
+
+        mensagem += `*DADOS DO COMPANHEIRO(A)*\n`;
+        mensagem += `CPF: ${cpfComp}\n`;
+        mensagem += `Nascimento: ${nascComp}\n`;
+        mensagem += `E-mail: ${emailComp}\n`;
+        mensagem += `Escolaridade: ${escComp}\n`;
+        mensagem += `PIS: ${pisComp}\n\n`;
     }
 
-    mensagem += `*3. DETALHES DO FINANCIAMENTO*\n`;
-    mensagem += `- Possui filhos menores? ${filhos}\n`;
-    mensagem += `- Mais de 3 anos de carteira (36 meses)? ${tempoTrabalho}\n`;
-    mensagem += `- Cidade do financiamento: ${cidade}\n`;
-    mensagem += `- Outro imóvel ou herança: ${outroImovel}\n`;
-    mensagem += `- Valor de entrada: ${entrada}\n`;
-    mensagem += `- Uso do FGTS: ${fgts}\n\n`;
+    mensagem += `*DETALHES DO FINANCIAMENTO*\n`;
+    mensagem += `Filhos menores de idade: ${filhos}\n`;
+    mensagem += `Mais de 36 meses de carteira: ${tempoTrabalho}\n`;
+    mensagem += `Cidade de interesse: ${cidade}\n`;
+    mensagem += `Outro imóvel ou herança: ${outroImovel}\n`;
+    mensagem += `Valor de entrada: ${entrada}\n`;
+    mensagem += `Uso do FGTS: ${fgts}\n\n`;
 
-    mensagem += `*4. INFORMAÇÕES EXTRAS*\n`;
-    mensagem += `- Quem indicou: ${encaminhou}\n`;
-    mensagem += `- Como conheceu: ${comoConheceu}\n\n`;
+    mensagem += `*INFORMAÇÕES ADICIONAIS*\n`;
+    mensagem += `Indicado por: ${encaminhou}\n`;
+    mensagem += `Como conheceu a Domob: ${comoConheceu}\n\n`;
 
-    mensagem += `👉 *Autorizou o uso de dados (LGPD):* Sim\n`;
-    mensagem += `⚠️ *Aguardando envio do comprovante de renda em foto/anexo logo abaixo.*`;
+    mensagem += `*Autorização LGPD:* Sim\n\n`;
+    mensagem += `Aguardando envio da foto do comprovante de renda logo abaixo.`;
 
     // Redirecionamento direto para o WhatsApp da Domob
     const urlFormatada = `https://wa.me/5535984030660?text=${encodeURIComponent(mensagem)}`;

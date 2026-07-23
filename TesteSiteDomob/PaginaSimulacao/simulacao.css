@@ -44,13 +44,11 @@
     display: block;
     font-size: 0.65rem;
     color: #64748b;
-    /* Restaurado para o cinza original */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-/* Estilo do botão restaurado (Fundo branco, borda azul, texto azul) */
 .botao-destaque-nav {
     display: inline-flex;
     align-items: center;
@@ -75,7 +73,6 @@
    ESTILOS ESPECÍFICOS E OTIMIZAÇÕES MOBILE DO FORMULÁRIO DE SIMULAÇÃO
    ========================================================================= */
 
-/* Barra de Progresso do Scroll */
 .progresso-rolagem {
     position: fixed;
     top: 0;
@@ -89,7 +86,6 @@
     opacity: 0;
 }
 
-/* Cabeçalho Fixo Padrão Index */
 .cabecalho-site {
     position: fixed !important;
     top: 0 !important;
@@ -105,7 +101,6 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Força a visibilidade do botão no celular */
 .links-navegacao-simulacao {
     display: flex !important;
     align-items: center !important;
@@ -160,9 +155,6 @@
     margin-bottom: 25px;
 }
 
-/* ----------------------------------------------------
-   DESIGN DA FOTO (LARGURA ENXUTA & FOTO AMPLIADA)
-------------------------------------------------------- */
 .perfil-destaque {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -197,8 +189,6 @@
     color: rgba(255, 255, 255, 0.95);
     margin: 0;
 }
-
-/* ---------------------------------------------------- */
 
 .corpo-form {
     padding: 40px;
@@ -276,10 +266,12 @@
     gap: 20px;
 }
 
+/* --- AJUSTE DE ALINHAMENTO AQUI --- */
 .campo-form {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    height: 100%;
 }
 
 .campo-largo {
@@ -292,15 +284,19 @@
     color: var(--texto-principal, #1e293b);
 }
 
+.campo-form label:not(:has(+ .dica-campo)) {
+    margin-bottom: auto;
+}
+
 .dica-campo {
     font-size: 0.8rem;
     color: #64748b;
     margin-top: -4px;
+    margin-bottom: auto;
 }
 
-/* =========================================================================
-   ESTILIZAÇÃO DOS CAMPOS DE TEXTO E SELECT CUSTOMIZADO
-   ========================================================================= */
+/* --------------------------------- */
+
 .campo-form input {
     padding: 14px 16px;
     border: 1px solid #cbd5e1;
@@ -411,8 +407,6 @@
     color: #f37021;
     font-weight: 600;
 }
-
-/* ========================================================================= */
 
 .area-aviso {
     background: #FFF7ED;
