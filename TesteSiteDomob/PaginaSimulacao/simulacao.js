@@ -134,6 +134,7 @@ document.getElementById('form-simulacao').addEventListener('submit', function (e
     const email = document.getElementById('email').value;
     const estadoCivil = document.getElementById('estado_civil').value;
 
+    const possuiEmprestimo = document.querySelector('input[name="possui_emprestimo"]:checked')?.value || 'Não informado';
     const filhos = document.querySelector('input[name="filhos"]:checked')?.value || 'Não informado';
     const tempoTrabalho = document.querySelector('input[name="tempo_trabalho"]:checked')?.value || 'Não informado';
     const cidade = document.getElementById('cidade').value;
@@ -171,7 +172,8 @@ document.getElementById('form-simulacao').addEventListener('submit', function (e
         mensagem += `PIS: ${pisComp}\n\n`;
     }
 
-    mensagem += `*DETALHES DO FINANCIAMENTO*\n`;
+    mensagem += `*DETALHES FINANCEIROS E DE FINANCIAMENTO*\n`;
+    mensagem += `Possui outro financiamento/empréstimo: ${possuiEmprestimo}\n`;
     mensagem += `Filhos menores de idade: ${filhos}\n`;
     mensagem += `Mais de 36 meses de carteira: ${tempoTrabalho}\n`;
     mensagem += `Cidade de interesse: ${cidade}\n`;

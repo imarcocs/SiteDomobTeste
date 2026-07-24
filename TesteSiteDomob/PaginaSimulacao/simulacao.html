@@ -7,10 +7,10 @@
     <meta name="description" content="Formulário de Simulação - Domob Soluções Imobiliárias." />
     <title>Simulação de Financiamento | Domob</title>
 
-    <!-- Ícone da Aba (Favicon) com técnica para quebrar o cache do navegador e compatibilidade Mobile -->
-    <link rel="icon" type="image/png" href="/imagens/LogoSemMouse.png" />
-    <link rel="shortcut icon" type="image/png" href="/imagens/LogoSemMouse.png" />
-    <link rel="apple-touch-icon" href="/imagens/LogoSemMouse.png" />
+    <!-- Ícone da Aba (Favicon) -->
+    <link rel="icon" type="image/png" href="../imagens/LogoSemMouse.png?v=3" />
+    <link rel="shortcut icon" type="image/png" href="../imagens/LogoSemMouse.png?v=3" />
+    <link rel="apple-touch-icon" href="../imagens/LogoSemMouse.png?v=3" />
 
     <!-- Fontes do Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- CSS Externo Ajustado para a Vercel -->
-    <link rel="stylesheet" href="/style2.css" />
-    <link rel="stylesheet" href="simulacao.css" />
+    <!-- CSS (style2.css volta uma pasta, simulacao.css fica na mesma) -->
+    <link rel="stylesheet" href="../style2.css" />
+    <link rel="stylesheet" href="./simulacao.css" />
 </head>
 
 <body>
@@ -30,12 +30,13 @@
     <!-- Cabeçalho -->
     <header class="cabecalho-site">
         <div class="conteiner navegacao">
-            <a href="/index.html" class="marca" aria-label="Voltar para a página inicial">
+            <a href="../index.html" class="marca" aria-label="Voltar para a página inicial">
                 <div class="area-logo">
                     <div class="logo-wrapper">
-                        <!-- Caminhos ajustados com / para funcionar na Vercel -->
-                        <img src="/imagens/LogoSemMouse.png" class="logo-imagem logo-sem-mouse" alt="Logo Domob">
-                        <img src="/imagens/LogoComMouse.png" class="logo-imagem logo-com-mouse" alt="Logo Domob Ativa">
+                        <!-- Imagens voltam uma pasta -->
+                        <img src="../imagens/LogoSemMouse.png" class="logo-imagem logo-sem-mouse" alt="Logo Domob">
+                        <img src="../imagens/LogoComMouse.png" class="logo-imagem logo-com-mouse"
+                            alt="Logo Domob Ativa">
                     </div>
                     <span class="texto-logo">Domob <small>Soluções Imobiliárias</small></span>
                 </div>
@@ -43,7 +44,7 @@
 
             <!-- Navegação Garantida no Mobile -->
             <nav class="links-navegacao-simulacao">
-                <a href="/index.html" class="botao-destaque-nav">
+                <a href="../index.html" class="botao-destaque-nav">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -68,8 +69,8 @@
                         <!-- Perfil da Atendente -->
                         <div class="perfil-destaque">
                             <div class="moldura-foto">
-                                <!-- Caminho ajustado com / para funcionar na Vercel -->
-                                <img src="/imagens/ThainaFormulario.jpeg" alt="Thainá - Domob Imóveis"
+                                <!-- Imagem volta uma pasta -->
+                                <img src="../imagens/ThainaFormulario.jpeg" alt="Thainá - Domob Imóveis"
                                     class="foto-thaina">
                             </div>
 
@@ -230,8 +231,20 @@
                             </div>
                         </div>
 
-                        <h2 class="titulo-sessao">Detalhes do Financiamento</h2>
+                        <h2 class="titulo-sessao">Detalhes Financeiros e de Financiamento</h2>
                         <div class="grade-campos">
+
+                            <div class="campo-form campo-largo">
+                                <label>Você possui atualmente algum financiamento, empréstimo, consórcio ou outro
+                                    compromisso financeiro com parcelas mensais?</label>
+                                <p class="dica-campo">(Ex: financiamento de carro, moto, imóvel, empréstimo consignado,
+                                    empréstimo pessoal, entre outros)</p>
+                                <div class="grupo-radio espaco-radio">
+                                    <label><input type="radio" name="possui_emprestimo" value="Sim" required>
+                                        Sim</label>
+                                    <label><input type="radio" name="possui_emprestimo" value="Não"> Não</label>
+                                </div>
+                            </div>
 
                             <div class="campo-form campo-largo">
                                 <label>Possui filhos menores de idade?</label>
@@ -321,8 +334,8 @@
         </section>
     </main>
 
-    <!-- Script Externo -->
-    <script src="simulacao.js"></script>
+    <!-- Script Externo (simulacao.js fica na mesma pasta) -->
+    <script src="./simulacao.js"></script>
 </body>
 
 </html>
